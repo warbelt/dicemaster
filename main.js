@@ -1,15 +1,13 @@
-const Game = require("./app/js/game.js")
-
 const { app, BrowserWindow } = require('electron')
 
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let win // Global referenceto the window so the GC does not close it
 
 function createWindow () {
     win = new BrowserWindow({ width: 800, height: 600 })
-    win.loadFile('./app/www/index.html')
+    win.loadURL('file://' + __dirname + '/app/www/index.html');
 
     win.on('closed', () => {
         // Dereference the window object, usually you would store windows
@@ -20,14 +18,3 @@ function createWindow () {
 }
 
 app.on('ready', createWindow)
-
-
-game = new Game()
-game.addDie(["mapache", "mapache", "perro", "gato", "ganso", "ganso"])
-game.addDie(["gato", "perro", "perro", "perro", "perro", "perro"])
-
-var tiradas = 10000
-for (i = 0; i < tiradas; i++)
-{
-    game.rollDice()
-}

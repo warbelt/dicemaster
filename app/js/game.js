@@ -1,5 +1,6 @@
 const Die = require("./die.js")
 
+
 class Game {
     constructor() {
         this.dice_list = []
