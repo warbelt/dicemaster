@@ -3,16 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <title>Dicemaster</title>
+
+        <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/index.css">
+
         <script>require("../js/index.js")</script>
         <script>require('bootstrap')</script>
     </head>
     <body>
-        <form>
-            <fieldset>
-                <label> Die faces: </label></br>
-                <input type="text" name="faces" required><br>
-                <input type="submit" value="Add die">
-            </fieldset>
-        </form> 
+        <div class="container">
+            <div class="text-center py-3">
+                <img src="../svg/dice.svg" alt="Dicemaster-icon" class="master-icon">
+                <h2>Dicemaster</h2>
+            </div>
+            <form>
+                <fieldset>
+                    <label for="dieFaces"> Die faces: </label></br>
+                    <input id="dieFaces" class="form-control" placeholder="ex.: 1,1,2,3,3,3 (You can use text, too)" type="text" name="faces" required><br>
+                    <button type="submit" class="btn btn-primary">Add die</button>
+                </fieldset>
+            </form> 
+        </div>
     </body>
 </html>
