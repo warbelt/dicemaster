@@ -1,1 +1,1 @@
-Icons by Dimi Kazak from www.flaticons.com
+Icons by Freepik from www.flaticons.com

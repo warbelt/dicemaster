@@ -6,7 +6,7 @@ const { app, BrowserWindow } = require('electron')
 let win // Global referenceto the window so the GC does not close it
 
 function createWindow () {
-    win = new BrowserWindow({ width: 800, height: 600 })
+    win = new BrowserWindow({ width: 1280, height: 720 })
     win.loadURL('file://' + __dirname + '/app/www/index.html');
 
     win.on('closed', () => {
