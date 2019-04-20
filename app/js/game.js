@@ -22,6 +22,14 @@ class Game {
         }
     }
 
+    rollExperiment(rolls){
+        this.restartResults()
+        for (let i = 0; i < rolls; i++)
+        {
+            this.rollDice()
+        }
+    }
+
     rollDice() {
         var roll = []
         this.dice_list.forEach(
@@ -34,6 +42,22 @@ class Game {
     getResults() {
         return this.results
     }
+
+    saveResults(){
+        let csvContent = "data:text/csv;charset=utf-8,";
+        this.results.forEach(function(rowArray){
+            let row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        }); 
+            
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "my_data.csv");
+
+        link.click();
+    }
 }
+
 
 module.exports = Game

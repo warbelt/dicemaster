@@ -1,12 +1,38 @@
 const Game = require("./game.js")
+const InputParser = require("./inputParser.js")
 
+var game;
+var inputParser;
 
-game = new Game()
-game.addDie(["mapache", "mapache", "perro", "gato", "ganso", "ganso"])
-game.addDie(["gato", "perro", "perro", "perro", "perro", "perro"])
+document.addEventListener("DOMContentLoaded", initialize);
 
-var tiradas = 10000
-for (i = 0; i < tiradas; i++)
-{
-    game.rollDice()
+function initialize() {
+    game = new Game();
+    inputParser = new InputParser();
+
+    attachListeners();
 }
+
+function attachListeners(){
+    // Click on Add Die
+    addDieButton = document.querySelector("#addDieButton");
+    addDieButton.addEventListener("click", function(){
+        faces = document.querySelector("#newDieFaces");
+        game.addDie(inputParser.parseDieInput(faces.value));
+
+    })
+
+    // Click on Roll Experiment
+    rollExperimentButton = document.querySelector("#rollExperimentButton");
+    rollExperimentButton.addEventListener("click", function() {
+        game.rollExperiment(100000);
+    })
+
+    // Click on Save Results
+    saveResultsButton = document.querySelector("#saveResultsButton");
+    saveResultsButton.addEventListener("click", function() {
+        game.saveResults();
+    })
+}
+
+
