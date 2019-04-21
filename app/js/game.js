@@ -44,17 +44,22 @@ class Game {
     }
 
     saveResults(){
-        let csvContent = "data:text/csv;charset=utf-8,";
+        // Newline is needed after each row
+        let csvContent = "";
         this.results.forEach(function(rowArray){
             let row = rowArray.join(",");
             csvContent += row + "\r\n";
         }); 
-            
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "my_data.csv");
+        
+        // Using blobs should prevent memory crash when experiment is too large
+        let csvBlob = new Blob([csvContent], { 
+            type : "application/csv;charset=utf-8;" 
+        }); 
 
+        var csvUrl = URL.createObjectURL(csvBlob);
+        var link = document.createElement("a");
+        link.setAttribute("href", csvUrl);
+        link.setAttribute("download", "my_data.csv");
         link.click();
     }
 }

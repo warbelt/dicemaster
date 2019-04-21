@@ -30,9 +30,7 @@ function attachListeners(){
 
     // Click on Save Results
     saveResultsButton = document.querySelector("#saveResultsButton");
-    saveResultsButton.addEventListener("click", function() {
-        game.saveResults();
-    })
+    saveResultsButton.addEventListener("click", () => game.saveResults())
 }
 
 
