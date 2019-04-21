@@ -25,7 +25,9 @@ function attachListeners(){
     // Click on Roll Experiment
     rollExperimentButton = document.querySelector("#rollExperimentButton");
     rollExperimentButton.addEventListener("click", function() {
-        game.rollExperiment(100000);
+        rollExperimentButton.setAttribute("disabled", true);
+        game.rollExperiment()
+            .then(() => rollExperimentButton.removeAttribute("disabled"));
     })
 
     // Click on Save Results

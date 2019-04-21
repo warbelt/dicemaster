@@ -5,6 +5,7 @@ class Game {
     constructor() {
         this.dice_list = []
         this.results = []
+        this.experimentRolls = 10000000
     }
 
     restartResults() {
@@ -22,12 +23,19 @@ class Game {
         }
     }
 
-    rollExperiment(rolls){
-        this.restartResults()
-        for (let i = 0; i < rolls; i++)
-        {
-            this.rollDice()
-        }
+    // TODO: concurrent rolls
+    rollExperiment(){
+        this.restartResults();
+
+        return new Promise(
+            (resolve, reject) => {
+                for (let i = 0; i < this.experimentRolls; i++)
+                {
+                    this.results.push(this.rollDice())
+                };
+                resolve();
+            }
+        )
     }
 
     rollDice() {
@@ -36,7 +44,7 @@ class Game {
             function(dice) {
                 roll.push(dice.roll())
         })
-        this.results.push(roll)
+        return roll
     }
 
     getResults() {
