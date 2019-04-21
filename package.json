@@ -1,6 +1,6 @@
 {
   "name": "dicemaster",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Electron app for performing Montecarlo simulations on custome dice",
   "main": "./main.js",
   "scripts": {

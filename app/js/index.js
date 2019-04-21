@@ -18,8 +18,15 @@ function attachListeners(){
     addDieButton = document.querySelector("#addDieButton");
     addDieButton.addEventListener("click", function(){
         faces = document.querySelector("#newDieFaces");
-        game.addDie(inputParser.parseDieInput(faces.value));
+        // TODO validate input before adding and updating list
+        parsedFaces = inputParser.parseDieInput(faces.value);
+        game.addDie(parsedFaces);
 
+        diceList = document.querySelector("#diceListUl")
+        var dieLi = document.createElement("li");
+        dieLi.innerHTML = parsedFaces;
+        dieLi.classList.add("list-group-item")
+        diceList.appendChild(dieLi);
     })
 
     // Click on Roll Experiment

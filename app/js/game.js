@@ -5,7 +5,7 @@ class Game {
     constructor() {
         this.dice_list = []
         this.results = []
-        this.experimentRolls = 10000000
+        this.experimentRolls = 100000
     }
 
     restartResults() {
@@ -59,7 +59,7 @@ class Game {
             csvContent += row + "\r\n";
         }); 
         
-        // Using blobs should prevent memory crash when experiment is too large
+        // TODO fix out of memory crash when experiment is too large
         let csvBlob = new Blob([csvContent], { 
             type : "application/csv;charset=utf-8;" 
         }); 
