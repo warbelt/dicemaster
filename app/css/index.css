@@ -2,3 +2,8 @@
     height: 72px;
     width: 72px
 }
+
+.btn-primary {
+    background-color: #629acc;
+    border-color: #629acc
+}

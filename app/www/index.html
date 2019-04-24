@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="../css/index.css">
 
         <script>require("../js/index.js")</script>
-        <script>require('bootstrap')</script>
+        <script>let $ = require('jquery');</script>
+        <script>require('popper.js');</script>
+        <script>require('bootstrap');</script>
     </head>
     <body class="bg-light">
         <div class="container">
@@ -19,10 +21,10 @@
             <div class="row">
                 <div class="col-7">
                     <label for="newDieFaces">Die faces</label></br>
-                    <input id="newDieFaces" class="form-control" placeholder="ex.: 1,1,2,3,3,3 (You can use text, too)" type="text" name="faces" required><br>
+                    <input id="newDieFaces" class="form-control" placeholder="ex.: 1,1,2,3,3,3 (You can use text, too)" type="text" name="faces" required data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Input is not valid"><br>
                     <button type="submit" id="addDieButton" class="btn btn-primary">Add die</button>
                     <hr />
-                    <button id="rollExperimentButton" class="btn btn-primary">
+                    <button id="rollExperimentButton" class="btn btn-primary" equired data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Rolling...">
                         Roll All
                     </button>
                     <button id="saveResultsButton" class="btn btn-primary">
