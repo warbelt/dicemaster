@@ -10,6 +10,9 @@ function initialize() {
     game = new Game();
     inputParser = new InputParser();
 
+    // Activate tooltips
+    $('[data-toggle="tooltip"]').tooltip()
+
     attachListeners();
 }
 
@@ -22,7 +25,8 @@ function attachListeners(){
         parsedFaces = inputParser.parseDieInput(faces.value);
 
         if (parsedFaces === null) {
-            pass;
+            $("#newDieFaces").tooltip("show")
+            setTimeout(() => $("#newDieFaces").tooltip("hide"), 2000)
         } else {
             game.addDie(parsedFaces);
             diceList = document.querySelector("#diceListUl")
@@ -39,8 +43,12 @@ function attachListeners(){
     rollExperimentButton = document.querySelector("#rollExperimentButton");
     rollExperimentButton.addEventListener("click", function() {
         rollExperimentButton.setAttribute("disabled", true);
+        $("#rollExperimentButton").tooltip("show")
         game.rollExperiment()
-            .then(() => rollExperimentButton.removeAttribute("disabled"));
+            .then(function() {
+                rollExperimentButton.removeAttribute("disabled"); 
+                $("#rollExperimentButton").tooltip("hide")
+            });
     })
 
     // Click on Save Results
