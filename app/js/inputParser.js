@@ -1,7 +1,23 @@
 class InputParser {
+    constructor() {
+        // one or more alphanumeric symbols, separated by commas
+        // no comma before first symbol nor after last symbol
+        this.dieValidationRegex = /^([\s\w]+,)*[\s\w]+$/;
+    }
+
+    validateDieInput(dieInput) { 
+        return this.dieValidationRegex.test(dieInput)
+    }
+
     parseDieInput(dieInput) {
-        let splitInput = dieInput.split(",");
-        let trimmedInput = splitInput.map(x => x.trim())
+        dieInput = dieInput.trim("");
+        
+        if (!this.validateDieInput(dieInput)){
+            return(null)
+        }
+
+        dieInput = dieInput.split(",");
+        let trimmedInput = dieInput.map(x => x.trim())
         return(trimmedInput)
     }
 }

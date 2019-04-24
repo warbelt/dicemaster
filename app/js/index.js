@@ -20,13 +20,19 @@ function attachListeners(){
         faces = document.querySelector("#newDieFaces");
         // TODO validate input before adding and updating list
         parsedFaces = inputParser.parseDieInput(faces.value);
-        game.addDie(parsedFaces);
 
-        diceList = document.querySelector("#diceListUl")
-        var dieLi = document.createElement("li");
-        dieLi.innerHTML = parsedFaces;
-        dieLi.classList.add("list-group-item")
-        diceList.appendChild(dieLi);
+        if (parsedFaces === null) {
+            pass;
+        } else {
+            game.addDie(parsedFaces);
+            diceList = document.querySelector("#diceListUl")
+            var dieLi = document.createElement("li");
+            dieLi.innerHTML = parsedFaces;
+            dieLi.classList.add("list-group-item")
+            diceList.appendChild(dieLi);
+        }
+
+        
     })
 
     // Click on Roll Experiment
