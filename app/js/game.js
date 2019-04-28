@@ -1,25 +1,26 @@
-const Die = require("./die.js")
+const Die = require("./die.js");
 
+const EXPERIMENT_ROLLS = 100000;
 
 class Game {
     constructor() {
-        this.dice_list = []
-        this.results = []
-        this.experimentRolls = 100000
+        this.dice_list = [];
+        this.results = [];
+        this.experimentRolls = EXPERIMENT_ROLLS;
     }
 
     restartResults() {
-        this.results = []
+        this.results = [];
     }
 
     addDie(faces_list) {
-        var die = new Die(faces_list)
-        this.dice_list.push(die)
+        var die = new Die(faces_list);
+        this.dice_list.push(die);
     }
 
     getDiceList() {
         for (var dice in this.dice_list) {
-            console.log(dice)
+            console.log(dice);
         }
     }
 
@@ -31,24 +32,24 @@ class Game {
             (resolve, reject) => {
                 for (let i = 0; i < this.experimentRolls; i++)
                 {
-                    this.results.push(this.rollDice())
-                };
+                    this.results.push(this.rollDice());
+                }
                 resolve();
             }
-        )
+        );
     }
 
     rollDice() {
-        var roll = []
+        var roll = [];
         this.dice_list.forEach(
             function(dice) {
-                roll.push(dice.roll())
-        })
-        return roll
+                roll.push(dice.roll());
+        });
+        return roll;
     }
 
     getResults() {
-        return this.results
+        return this.results;
     }
 
     saveResults(){
@@ -73,4 +74,4 @@ class Game {
 }
 
 
-module.exports = Game
+module.exports = Game;

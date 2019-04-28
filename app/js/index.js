@@ -1,5 +1,5 @@
-const Game = require("./game.js")
-const InputParser = require("./inputParser.js")
+const Game = require("./game.js");
+const InputParser = require("./inputParser.js");
 
 var game;
 var inputParser;
@@ -11,7 +11,7 @@ function initialize() {
     inputParser = new InputParser();
 
     // Activate tooltips
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
 
     attachListeners();
 }
@@ -25,35 +25,31 @@ function attachListeners(){
         parsedFaces = inputParser.parseDieInput(faces.value);
 
         if (parsedFaces === null) {
-            $("#newDieFaces").tooltip("show")
-            setTimeout(() => $("#newDieFaces").tooltip("hide"), 2000)
+            $("#newDieFaces").tooltip("show");
+            setTimeout(() => $("#newDieFaces").tooltip("hide"), 2000);
         } else {
             game.addDie(parsedFaces);
-            diceList = document.querySelector("#diceListUl")
+            diceList = document.querySelector("#diceListUl");
             var dieLi = document.createElement("li");
             dieLi.innerHTML = parsedFaces;
-            dieLi.classList.add("list-group-item")
+            dieLi.classList.add("list-group-item");
             diceList.appendChild(dieLi);
         }
-
-        
-    })
+    });
 
     // Click on Roll Experiment
     rollExperimentButton = document.querySelector("#rollExperimentButton");
     rollExperimentButton.addEventListener("click", function() {
         rollExperimentButton.setAttribute("disabled", true);
-        $("#rollExperimentButton").tooltip("show")
+        $("#rollExperimentButton").tooltip("show");
         game.rollExperiment()
             .then(function() {
                 rollExperimentButton.removeAttribute("disabled"); 
-                $("#rollExperimentButton").tooltip("hide")
+                $("#rollExperimentButton").tooltip("hide");
             });
-    })
+    });
 
     // Click on Save Results
     saveResultsButton = document.querySelector("#saveResultsButton");
-    saveResultsButton.addEventListener("click", () => game.saveResults())
+    saveResultsButton.addEventListener("click", () => game.saveResults());
 }
-
-
