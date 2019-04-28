@@ -6,21 +6,21 @@ class InputParser {
     }
 
     validateDieInput(dieInput) { 
-        return this.dieValidationRegex.test(dieInput)
+        return this.dieValidationRegex.test(dieInput);
     }
 
     parseDieInput(dieInput) {
         dieInput = dieInput.trim("");
         
         if (!this.validateDieInput(dieInput)){
-            return(null)
+            return(null);
         }
 
         dieInput = dieInput.split(",");
-        let trimmedInput = dieInput.map(x => x.trim())
-        return(trimmedInput)
+        let trimmedInput = dieInput.map(x => x.trim());
+        return(trimmedInput);
     }
 }
 
 
-module.exports = InputParser
+module.exports = InputParser;
