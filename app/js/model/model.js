@@ -1,15 +1,16 @@
-const InputParser = require("../inputParser.js");
 const EventDispatcher = require("../eventDispatcher.js");
 const Die = require("./die.js");
 
 const DEFAULT_EXPERIMENT_ROLLS = 100000;
 
 class GameModel {
-    constructor() {
+    constructor(inputParser) {
         // Dependencies
-        this.inputParser = new InputParser();
+        this.inputParser = inputParser;
         // Events
-        this.addDieEvent = new EventDispatcher(this);
+        this.dieAddedEvent = new EventDispatcher(this);
+        this.invalidDieInputEvent = new EventDispatcher(this);
+        this.experimentEndEvent = new EventDispatcher(this);
 
         this.dice_list = [];
         this.results = [];
@@ -20,15 +21,14 @@ class GameModel {
         var parsedFaces = this.inputParser.parseDieInput(args.dieFaces);
 
         if (parsedFaces === null) {
-            $("#newDieFaces").tooltip("show");
-            setTimeout(() => $("#newDieFaces").tooltip("hide"), 2000);
+            this.invalidDieInputEvent.notify();
         } else {
             var die = new Die(parsedFaces);
             this.dice_list.push(die);
             var dieLi = document.createElement("li");
             dieLi.innerHTML = parsedFaces;
             dieLi.classList.add("list-group-item");
-            this.addDieEvent.notify({
+            this.dieAddedEvent.notify({
                 dieItem: dieLi
             });
         }
@@ -39,11 +39,9 @@ class GameModel {
     }
 
     rollExperiment() {
-        this.rollExperimentButton.setAttribute("disabled", true);
-        $("#rollExperimentButton").tooltip("show");
         this.restartResults();
 
-        return new Promise(
+        var rollPromise = new Promise(
             (resolve, reject) => {
                 for (let i = 0; i < this.experimentRolls; i++)
                 {
@@ -52,10 +50,7 @@ class GameModel {
                 resolve();
             }
         );
-            // .then(function() {
-            //     this.rollExperimentButton.removeAttribute("disabled"); 
-            //     $("#rollExperimentButton").tooltip("hide");
-            // });
+        rollPromise.then(() => this.experimentEndEvent.notify());
     }
 
     rollDice() {

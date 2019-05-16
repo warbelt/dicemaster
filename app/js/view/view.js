@@ -1,7 +1,8 @@
-EventDispatcher = require("../eventDispatcher.js");
+const EventDispatcher = require("../eventDispatcher.js");
 
 class GameView {
-    constructor() {
+    constructor(model) {
+        this.model = model;
         this.addDieEvent = new EventDispatcher(this);
         this.rollAllEvent = new EventDispatcher(this);
         this.saveResultsEvent = new EventDispatcher(this);
@@ -10,7 +11,7 @@ class GameView {
     init() {
         this.createChildren();
         this.setupHandlers();
-        this.attachListeners();
+        this.enable();
     }
  
     createChildren() {
@@ -25,13 +26,24 @@ class GameView {
         this.addDieButtonHandler = this.addDieButton.bind(this);
         this.rollExperimentButtonHandler = this.rollExperimentButton.bind(this);
         this.saveResultsButtonHandler = this.saveResultsButton.bind(this);
-        this.addDieToListHandler = this.addDieToList.bind(this)
+        this.addDieToListHandler = this.addDieToList.bind(this);
+
+        this.addDieToListHandler = this.addDieToList.bind(this);
+        this.notifyInvalidDieHandler = this.notifyInvalidDie.bind(this);
+        this.enableRollExperimentHandler = this.enableRollExperiment.bind(this);
+        this.enableSaveResultsHandler = this.enableSaveResults.bind(this);
+
     }
 
-    attachListeners() {
+    enable() {
         this.dom_addDieButton.addEventListener("click", this.addDieButtonHandler);
         this.dom_rollExperimentButton.addEventListener("click", this.rollExperimentButtonHandler);
         this.dom_saveResultsButton.addEventListener("click", this.saveResultsButtonHandler);
+
+        this.model.dieAddedEvent.attach(this.addDieToListHandler);
+        this.model.invalidDieInputEvent.attach(this.notifyInvalidDieHandler);
+        this.model.experimentEndEvent.attach(this.enableRollExperimentHandler);
+        this.model.experimentEndEvent.attach(this.enableSaveResultsHandler);
     }
 
     addDieButton() {
@@ -41,6 +53,9 @@ class GameView {
     }
 
     rollExperimentButton() {
+        this.dom_rollExperimentButton.setAttribute("disabled", true);
+        $("#rollExperimentButton").tooltip("show");
+        
         this.rollAllEvent.notify({});
     }
 
@@ -50,6 +65,20 @@ class GameView {
 
     addDieToList(args) {
         this.dom_diceList.appendChild(args.dieItem);
+    }
+
+    notifyInvalidDie() {
+        $("#newDieFaces").tooltip("show");
+        setTimeout(() => $("#newDieFaces").tooltip("hide"), 2000);
+    }
+
+    enableRollExperiment() {
+        this.dom_rollExperimentButton.removeAttribute("disabled"); 
+        $("#rollExperimentButton").tooltip("hide");
+    }
+
+    enableSaveResults() {
+        this.dom_saveResultsButton.removeAttribute("disabled");
     }
 }
 

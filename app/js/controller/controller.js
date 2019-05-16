@@ -14,15 +14,12 @@ class Controller {
         this.addDieHandler = this.addDie.bind(this);
         this.rollExperimentHandler = this.rollExperiment.bind(this);
         this.saveResultsHandler = this.saveResults.bind(this);
-        this.addDieToListHandler = this.addDieToList.bind(this);
     }
 
     enable() {
         this.view.addDieEvent.attach(this.addDieHandler);
         this.view.rollAllEvent.attach(this.rollExperimentHandler);
         this.view.saveResultsEvent.attach(this.saveResultsHandler);
-
-        this.model.addDieEvent.attach(this.addDieToListHandler);
     }
 
     addDie(args) {
@@ -35,10 +32,6 @@ class Controller {
 
     saveResults() {
         this.model.saveResults();
-    }
-
-    addDieToList(args) {
-        this.view.addDieToListHandler(args);
     }
 }
 
