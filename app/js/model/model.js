@@ -1,34 +1,47 @@
+const EventDispatcher = require("../eventDispatcher.js");
 const Die = require("./die.js");
 
-const EXPERIMENT_ROLLS = 100000;
+const DEFAULT_EXPERIMENT_ROLLS = 100000;
 
-class Game {
-    constructor() {
+class GameModel {
+    constructor(inputParser) {
+        // Dependencies
+        this.inputParser = inputParser;
+        // Events
+        this.dieAddedEvent = new EventDispatcher(this);
+        this.invalidDieInputEvent = new EventDispatcher(this);
+        this.experimentEndEvent = new EventDispatcher(this);
+
         this.dice_list = [];
         this.results = [];
-        this.experimentRolls = EXPERIMENT_ROLLS;
+        this.experimentRolls = DEFAULT_EXPERIMENT_ROLLS;
+    }
+
+    addDie(args) {
+        var parsedFaces = this.inputParser.parseDieInput(args.dieFaces);
+
+        if (parsedFaces === null) {
+            this.invalidDieInputEvent.notify();
+        } else {
+            var die = new Die(parsedFaces);
+            this.dice_list.push(die);
+            var dieLi = document.createElement("li");
+            dieLi.innerHTML = parsedFaces;
+            dieLi.classList.add("list-group-item");
+            this.dieAddedEvent.notify({
+                dieItem: dieLi
+            });
+        }
     }
 
     restartResults() {
         this.results = [];
     }
 
-    addDie(faces_list) {
-        var die = new Die(faces_list);
-        this.dice_list.push(die);
-    }
-
-    getDiceList() {
-        for (var dice in this.dice_list) {
-            console.log(dice);
-        }
-    }
-
-    // TODO: concurrent rolls
-    rollExperiment(){
+    rollExperiment() {
         this.restartResults();
 
-        return new Promise(
+        var rollPromise = new Promise(
             (resolve, reject) => {
                 for (let i = 0; i < this.experimentRolls; i++)
                 {
@@ -37,6 +50,7 @@ class Game {
                 resolve();
             }
         );
+        rollPromise.then(() => this.experimentEndEvent.notify());
     }
 
     rollDice() {
@@ -46,10 +60,6 @@ class Game {
                 roll.push(dice.roll());
         });
         return roll;
-    }
-
-    getResults() {
-        return this.results;
     }
 
     saveResults(){
@@ -73,5 +83,4 @@ class Game {
     }
 }
 
-
-module.exports = Game;
+module.exports = GameModel;

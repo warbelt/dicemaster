@@ -7,3 +7,9 @@
     background-color: #629acc;
     border-color: #629acc
 }
+
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #629acc;
+    border-color: #629acc;
+    opacity: 0.65
+}
