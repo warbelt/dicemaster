@@ -23,7 +23,17 @@
                     <label for="newDieFaces">Die faces</label></br>
                     <input id="newDieFaces" class="form-control" placeholder="ex.: 1,1,2,3,3,3 (You can use text, too)" type="text" name="faces" required data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Input is not valid"><br>
                     <button type="submit" id="addDieButton" class="btn btn-primary">Add die</button>
+                    <div style="float: right">
+                        <button type="submit" id="editDieButton" class="btn btn-primary" disabled=true>
+                            Edit die
+                        </button>
+                        <button type="submit" id="removeDieButton" class="btn btn-primary" disabled=true>
+                            Remove die
+                        </button>
+                    </div>
+                    
                     <hr />
+                    
                     <button id="rollExperimentButton" class="btn btn-primary" equired data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Rolling...">
                         Roll All
                     </button>

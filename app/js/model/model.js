@@ -11,6 +11,8 @@ class GameModel {
         this.dieAddedEvent = new EventDispatcher(this);
         this.invalidDieInputEvent = new EventDispatcher(this);
         this.experimentEndEvent = new EventDispatcher(this);
+        this.dieEditedEvent = new EventDispatcher(this);
+        this.dieRemovedEvent = new EventDispatcher(this);
 
         this.dice_list = [];
         this.results = [];
@@ -25,12 +27,8 @@ class GameModel {
         } else {
             var die = new Die(parsedFaces);
             this.dice_list.push(die);
-            var dieLi = document.createElement("li");
-            dieLi.innerHTML = parsedFaces;
-            dieLi.classList.add("list-group-item");
-            this.dieAddedEvent.notify({
-                dieItem: dieLi
-            });
+            
+            this.dieAddedEvent.notify();
         }
     }
 
@@ -80,6 +78,21 @@ class GameModel {
         link.setAttribute("href", csvUrl);
         link.setAttribute("download", "my_data.csv");
         link.click();
+    }
+
+    editDie(args) {
+        if (args.index < this.dice_list.length) {
+            this.dice_list[args.index].faces_list = args.dieFaces;
+        }
+
+        this.dieEditedEvent.notify();
+    }
+
+    removeDie(args) {
+        if (args.index < this.dice_list.length) {
+            this.dice_list.splice(args.index, 1);
+        }
+        this.dieRemovedEvent.notify();
     }
 }
 
