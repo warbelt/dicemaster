@@ -16,6 +16,8 @@ class Controller {
         this.saveResultsHandler = this.saveResults.bind(this);
         this.editDieHandler = this.editDie.bind(this);
         this.removeDieHandler = this.removeDie.bind(this);
+        this.saveDiceListHandler = this.saveDiceList.bind(this);
+        this.loadDiceListHandler = this.loadDiceList.bind(this);
     }
 
     enable() {
@@ -24,6 +26,9 @@ class Controller {
         this.view.saveResultsEvent.attach(this.saveResultsHandler);
         this.view.editDieEvent.attach(this.editDieHandler);
         this.view.removeDieEvent.attach(this.removeDieHandler);
+        this.view.saveDiceListEvent.attach(this.saveDiceListHandler);
+        this.view.loadDiceListEvent.attach(this.loadDiceListHandler);
+
     }
 
     addDie(args) {
@@ -44,6 +49,14 @@ class Controller {
 
     removeDie(args) {
         this.model.removeDie(args);
+    }
+
+    saveDiceList(args) {
+        this.model.saveDiceList();
+    }
+
+    loadDiceList(args) {
+        this.model.loadDiceList();
     }
 }
 
