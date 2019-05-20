@@ -25,11 +25,14 @@ class GameModel {
         if (parsedFaces === null) {
             this.invalidDieInputEvent.notify();
         } else {
-            var die = new Die(parsedFaces);
-            this.dice_list.push(die);
-            
+            this.dice_list.push(this.createDie(parsedFaces));
             this.dieAddedEvent.notify();
         }
+    }
+
+    createDie(faces) {
+        var die = new Die(faces);
+        return die;
     }
 
     restartResults() {
@@ -81,10 +84,16 @@ class GameModel {
 
     editDie(args) {
         if (args.index < this.dice_list.length) {
-            this.dice_list[args.index].faces_list = args.dieFaces;
-        }
+            // First parse die
+            var parsedFaces = this.inputParser.parseDieInput(args.dieFaces);
 
-        this.dieEditedEvent.notify();
+            if (parsedFaces === null) {
+                this.invalidDieInputEvent.notify();
+            } else {
+                this.dice_list[args.index] = this.createDie(parsedFaces);
+                this.dieEditedEvent.notify();
+            }
+        }
     }
 
     removeDie(args) {
