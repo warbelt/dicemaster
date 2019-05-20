@@ -68,7 +68,6 @@ class GameModel {
             csvContent += row + "\r\n";
         }); 
         
-        // TODO fix out of memory crash when experiment is too large
         let csvBlob = new Blob([csvContent], { 
             type : "application/csv;charset=utf-8;" 
         }); 
@@ -93,6 +92,48 @@ class GameModel {
             this.dice_list.splice(args.index, 1);
         }
         this.dieRemovedEvent.notify();
+    }
+
+    saveDiceList() {
+        // Newline is needed after each row
+        let csvContent = "";
+        this.dice_list.forEach(function(rowArray){
+            let row = rowArray.faces_list.join(",");
+            csvContent += row + "\r\n";
+        }); 
+        
+        let csvBlob = new Blob([csvContent], { 
+            type : "application/csv;charset=utf-8;" 
+        }); 
+
+        var csvUrl = URL.createObjectURL(csvBlob);
+        var link = document.createElement("a");
+        link.setAttribute("href", csvUrl);
+        link.setAttribute("download", "my_dice.csv");
+        link.click();
+    }
+
+    loadDiceList() {
+        var input = document.createElement('input');
+        input.type = 'file';
+
+        input.onchange = e => { 
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.readAsText(file,'UTF-8');
+         
+            reader.onload = readerEvent => {
+                var content = readerEvent.target.result;
+                content.split("\n").forEach(faces => 
+                    this.addDie({
+                        dieFaces: faces 
+                    })
+                );
+            };
+         };
+         
+        input.click();
+        
     }
 }
 

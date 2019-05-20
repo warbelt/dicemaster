@@ -8,6 +8,8 @@ class GameView {
         this.removeDieEvent = new EventDispatcher(this);
         this.rollAllEvent = new EventDispatcher(this);
         this.saveResultsEvent = new EventDispatcher(this);
+        this.saveDiceListEvent = new EventDispatcher(this);
+        this.loadDiceListEvent = new EventDispatcher(this);
     }
 
     init() {
@@ -25,6 +27,9 @@ class GameView {
         this.dom_removeDieButton = document.querySelector("#removeDieButton");
         this.dom_rollExperimentButton = document.querySelector("#rollExperimentButton");
         this.dom_saveResultsButton = document.querySelector("#saveResultsButton");
+        this.dom_saveDiceListButton = document.querySelector("#saveDiceListButton");
+        this.dom_loadDiceListButton = document.querySelector("#loadDiceListButton");
+
     }
 
     setupHandlers() {
@@ -35,6 +40,10 @@ class GameView {
         this.rollExperimentButtonHandler = this.rollExperimentButton.bind(this);
         this.saveResultsButtonHandler = this.saveResultsButton.bind(this);
         this.renderDiceListHandler = this.renderDiceList.bind(this);
+
+        this.saveDiceListButtonHandler = this.saveDiceListButton.bind(this);
+        this.loadDiceListButtonHandler = this.loadDiceListButton.bind(this);
+
         // Coming from model
         this.notifyInvalidDieHandler = this.notifyInvalidDie.bind(this);
         this.enableRollExperimentHandler = this.enableRollExperiment.bind(this);
@@ -52,6 +61,9 @@ class GameView {
 
         this.dom_rollExperimentButton.addEventListener("click", this.rollExperimentButtonHandler);
         this.dom_saveResultsButton.addEventListener("click", this.saveResultsButtonHandler);
+
+        this.dom_saveDiceListButton.addEventListener("click", this.saveDiceListButtonHandler);
+        this.dom_loadDiceListButton.addEventListener("click", this.loadDiceListButtonHandler);
 
         this.model.dieAddedEvent.attach(this.dieAddedHandler);
         this.model.invalidDieInputEvent.attach(this.notifyInvalidDieHandler);
@@ -107,6 +119,14 @@ class GameView {
 
     saveResultsButton() {
         this.saveResultsEvent.notify({});
+    }
+
+    saveDiceListButton() {
+        this.saveDiceListEvent.notify({});
+    }
+
+    loadDiceListButton() {
+        this.loadDiceListEvent.notify({});        
     }
 
     notifyInvalidDie() {

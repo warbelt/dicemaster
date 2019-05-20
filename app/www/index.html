@@ -20,7 +20,7 @@
             </div>
             <div class="row">
                 <div class="col-7">
-                    <label for="newDieFaces">Die faces</label></br>
+                    <label class="text-muted h4" for="newDieFaces">Die faces</label></br>
                     <input id="newDieFaces" class="form-control" placeholder="ex.: 1,1,2,3,3,3 (You can use text, too)" type="text" name="faces" required data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Input is not valid"><br>
                     <button type="submit" id="addDieButton" class="btn btn-primary">Add die</button>
                     <div style="float: right">
@@ -34,7 +34,7 @@
                     
                     <hr />
                     
-                    <button id="rollExperimentButton" class="btn btn-primary" equired data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Rolling...">
+                    <button id="rollExperimentButton" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Rolling...">
                         Roll All
                     </button>
                     <button id="saveResultsButton" class="btn btn-primary" disabled=true>
@@ -42,12 +42,19 @@
                     </button>
                 </div>
                 <div class="col-5">
-                    <h5 class="text-muted">Dice List</h5>
-                    <ul id="diceListUl" class="list-group">
-                    </ul>
-                    </i>
+                    <h5 class="text-muted text-center h4">Dice List</h5>
+                    <ul id="diceListUl" class="list-group"></ul>
+                    <div class="saveload-icons text-center">
+                        <button id="saveDiceListButton" class="btn btn-primary">
+                            <img src="../svg/save.svg" alt="Save icon" class="saveload-icon">
+                            Save
+                        </button>
+                        <button type="file" id="loadDiceListButton" class="btn btn-primary">
+                            <img src="../svg/open.svg" alt="Load icon" class="saveload-icon">
+                            Load
+                        </button>
+                    </div>
                 </div>
-
             </div>
         </div>
     </body>
