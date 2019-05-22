@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build:all": "electron-packager . --all --asar --overwrite --out=dist",
-    "build:win": "electron-packager . --platform=win32 --arch=ia32 --asar --overwrite --out=dist",
-    "build:linux": "electron-packager . --platform=linux --arch=x64 --asar --overwrite --out=dist",
-    "build:mac": "electron-packager . --platform=darwin --arch=x64 --asar --overwrite --out=dist"
+    "build:all": "electron-packager . --all --asar --overwrite --out=dist --icon=dice.icns",
+    "build:win": "electron-packager . --platform=win32 --arch=ia32 --asar --overwrite --out=dist --icon=dice.icns",
+    "build:linux": "electron-packager . --platform=linux --arch=x64 --asar --overwrite --out=dist --icon=dice.icns",
+    "build:mac": "electron-packager . --platform=darwin --arch=x64 --asar --overwrite --out=dist --icon=dice.icns"
   },
   "keywords": [
     "dice",
