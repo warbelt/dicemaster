@@ -1,20 +1,33 @@
 {
   "name": "dicemaster",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "description": "Electron app for performing Montecarlo simulations on custome dice",
-  "main": "src/index.js",
+  "main": "./main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build:all": "electron-packager . --all --asar --overwrite --out=dist --icon=dice.icns",
+    "build:win": "electron-packager . --platform=win32 --arch=ia32 --asar --overwrite --out=dist --icon=dice.icns",
+    "build:linux": "electron-packager . --platform=linux --arch=x64 --asar --overwrite --out=dist --icon=dice.icns",
+    "build:mac": "electron-packager . --platform=darwin --arch=x64 --asar --overwrite --out=dist --icon=dice.icns"
   },
   "keywords": [
     "dice",
-    "montecarlo-simulation",
+    "dice-roller",
+    "probability",
+    "montecarlo-method",
     "electron"
   ],
   "author": "warbelt",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^4.1.4"
+    "electron": "^4.1.4",
+    "electron-packager": "^13.1.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "inline-svg": "^2.2.3",
+    "jquery": "^3.4.0",
+    "popper.js": "^1.15.0"
   }
 }

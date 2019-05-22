@@ -1,0 +1,70 @@
+body {
+    -webkit-app-region:drag;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+button,
+textarea,
+#diceListUl {
+	-webkit-app-region: no-drag;
+}
+
+.close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    height: 3rem;
+    width: 3rem;
+}
+
+.main {
+    margin-top: 2.5rem;
+}
+
+.master-icon {
+    height: 5rem;
+    width: 5rem;
+}
+
+#diceListUl {
+    max-height: 21rem;
+    overflow-y: scroll;
+    display: block;
+}
+
+#diceListUl li {
+    overflow-y: visible;
+}
+
+.btn-primary {
+    background-color: #629acc;
+    border-color: #629acc
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #629acc;
+    border-color: #629acc;
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+.saveload-icons {
+    margin-top: 5px
+}
+
+.button-container {
+    display: inline-block;
+}
+
+.button-icon {
+    height: 36px;
+    width: 36px;
+}
+
+svg path {
+    stroke: white;
+    fill: white;
+}
