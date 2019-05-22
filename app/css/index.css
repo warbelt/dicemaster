@@ -3,6 +3,16 @@
     width: 72px
 }
 
+#diceListUl {
+    max-height: 21rem;
+    overflow-y: scroll;
+    display: block;
+}
+
+#diceListUl li {
+    overflow-y: visible;
+}
+
 .btn-primary {
     background-color: #629acc;
     border-color: #629acc

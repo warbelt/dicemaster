@@ -155,6 +155,7 @@ class GameView {
                 node => node.classList.remove("active")
             );
             button.classList.add("active");
+            this.dom_faces.value = button.innerHTML;
             this.dom_editDieButton.removeAttribute("disabled");
             this.dom_removeDieButton.removeAttribute("disabled");
         }
@@ -186,10 +187,19 @@ class GameView {
         this.model.dice_list.forEach(die => {
             let dieLi = document.createElement("li");
             dieLi.innerHTML = die.faces_list;
-            dieLi.classList.add("list-group-item", "list-group-item-action");
+            dieLi.classList.add("list-group-item", "list-group-item-action", "text-truncate");
             dieLi.addEventListener("click", this.toggleDieSelectionHandler);
 
             this.dom_diceList.appendChild(dieLi);
+
+            // If list item has overflown content, add tooltip
+            if (dieLi.scrollHeight > dieLi.clientHeight || 
+                dieLi.scrollWidth > dieLi.clientWidth) 
+            {
+                dieLi.setAttribute("data-toggle", "tooltip");
+                dieLi.setAttribute("data-placement", "top");
+                dieLi.setAttribute("title", die.faces_list);
+            }              
         });
     }
 }
