@@ -11,9 +11,19 @@
 .btn-primary.disabled, .btn-primary:disabled {
     background-color: #629acc;
     border-color: #629acc;
-    opacity: 0.65
+    opacity: 0.65;
+    pointer-events: none;
 }
 
 .saveload-icons {
     margin-top: 5px
+}
+
+.button-icon {
+    height: 36px;
+    width: 36px;
+}
+
+.button-container {
+    display: inline-block;
 }

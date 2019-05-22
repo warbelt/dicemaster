@@ -22,37 +22,52 @@
                 <div class="col-7">
                     <label class="text-muted h4" for="newDieFaces">Die faces</label></br>
                     <input id="newDieFaces" class="form-control" placeholder="ex.: 1,1,2,3,3,3 (You can use text, too)" type="text" name="faces" required data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Input is not valid"><br>
-                    <button type="submit" id="addDieButton" class="btn btn-primary">Add die</button>
+                    <div class="button-container" data-toggle="tooltip" data-placement="top" title="Save Die">
+                        <button type="submit" id="addDieButton" class="btn btn-primary">
+                            <img src="../svg/addDie.svg" alt="Add die" class="button-icon">
+                        </button>
+                    </div>
                     <div style="float: right">
-                        <button type="submit" id="editDieButton" class="btn btn-primary" disabled=true>
-                            Edit die
-                        </button>
-                        <button type="submit" id="removeDieButton" class="btn btn-primary" disabled=true>
-                            Remove die
-                        </button>
+                        <div class="button-container text-center" data-toggle="tooltip" data-placement="top" title="Edit Die">
+                            <button type="submit" id="editDieButton" class="btn btn-primary" disabled=true>
+                                <img src="../svg/edit.svg" alt="Edit die" class="button-icon">
+                            </button>
+                        </div>
+                        <div class="button-container text-center" data-toggle="tooltip" data-placement="top" title="Remove Die" >
+                            <button type="submit" id="removeDieButton" class="btn btn-primary" disabled=true>
+                                <img src="../svg/removeDie.svg" alt="Remove die" class="button-icon">
+                            </button>
+                        </div>
                     </div>
                     
                     <hr />
                     
-                    <button id="rollExperimentButton" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Rolling...">
-                        Roll All
-                    </button>
-                    <button id="saveResultsButton" class="btn btn-primary" disabled=true>
-                            Save results to .CSV
-                    </button>
+                    <div class="button-container" data-toggle="tooltip" data-placement="top" title="Roll Dice">
+                        <button id="rollExperimentButton" class="btn btn-primary" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Rolling...">
+                            <img src="../svg/rollDice.svg" alt="Roll Dice" class="button-icon">
+                        </button>
+                    </div>
+                    <div class="button-container" data-toggle="tooltip" data-placement="top" title="Save Results to CSV">
+                        <button id="saveResultsButton" class="btn btn-primary" disabled=true>
+                            <img src="../svg/saveResults.svg" alt="Save Results" class="button-icon">
+                        </button>
+                    </div>
+
                 </div>
                 <div class="col-5">
                     <h5 class="text-muted text-center h4">Dice List</h5>
                     <ul id="diceListUl" class="list-group"></ul>
                     <div class="saveload-icons text-center">
-                        <button id="saveDiceListButton" class="btn btn-primary">
-                            <img src="../svg/save.svg" alt="Save icon" class="saveload-icon">
-                            Save
-                        </button>
-                        <button type="file" id="loadDiceListButton" class="btn btn-primary">
-                            <img src="../svg/open.svg" alt="Load icon" class="saveload-icon">
-                            Load
-                        </button>
+                        <div class="button-container" data-toggle="tooltip" data-placement="top" title="Save Dice List">
+                            <button id="saveDiceListButton" class="btn btn-primary">
+                                <img src="../svg/save.svg" alt="Save icon" class="button-icon">
+                            </button>
+                        </div>
+                        <div class="button-container" data-toggle="tooltip" data-placement="top" title="Load Dice List from file">
+                            <button type="file" id="loadDiceListButton" class="btn btn-primary">
+                                <img src="../svg/open.svg" alt="Load icon" class="button-icon">
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
