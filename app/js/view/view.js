@@ -155,6 +155,7 @@ class GameView {
                 node => node.classList.remove("active")
             );
             button.classList.add("active");
+            this.dom_faces.value = button.innerHTML;
             this.dom_editDieButton.removeAttribute("disabled");
             this.dom_removeDieButton.removeAttribute("disabled");
         }
