@@ -187,7 +187,7 @@ class GameView {
         this.model.dice_list.forEach(die => {
             let dieLi = document.createElement("li");
             dieLi.innerHTML = die.faces_list;
-            dieLi.classList.add("list-group-item", "list-group-item-action");
+            dieLi.classList.add("list-group-item", "list-group-item-action", "text-truncate");
             dieLi.addEventListener("click", this.toggleDieSelectionHandler);
 
             this.dom_diceList.appendChild(dieLi);
