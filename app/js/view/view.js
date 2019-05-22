@@ -191,6 +191,15 @@ class GameView {
             dieLi.addEventListener("click", this.toggleDieSelectionHandler);
 
             this.dom_diceList.appendChild(dieLi);
+
+            // If list item has overflown content, add tooltip
+            if (dieLi.scrollHeight > dieLi.clientHeight || 
+                dieLi.scrollWidth > dieLi.clientWidth) 
+            {
+                dieLi.setAttribute("data-toggle", "tooltip");
+                dieLi.setAttribute("data-placement", "top");
+                dieLi.setAttribute("title", die.faces_list);
+            }              
         });
     }
 }
