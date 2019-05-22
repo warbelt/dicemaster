@@ -19,11 +19,16 @@
     margin-top: 5px
 }
 
+.button-container {
+    display: inline-block;
+}
+
 .button-icon {
     height: 36px;
     width: 36px;
 }
 
-.button-container {
-    display: inline-block;
+svg path {
+    stroke: white;
+    fill: white;
 }

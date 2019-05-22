@@ -1,3 +1,5 @@
+const inlineSVG = require("inline-svg");
+
 const Controller = require("./controller/controller.js");
 const Model = require("./model/model.js");
 const View = require("./view/view.js");
@@ -13,6 +15,10 @@ function initialize() {
 
     // Activate tooltips
     $('[data-toggle="tooltip"]').tooltip();
+    // Inline SVG
+    inlineSVG.init({
+        svgSelector: "img.button-icon"
+    });
 
     controller.init();
 }
