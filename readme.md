@@ -1,5 +1,7 @@
 # Dicemaster <img src="https://raw.githubusercontent.com/warbelt/dicemaster/master/dices64.png" width="50px" height="50px" />
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a98aef28f4b746e193a3625dc62faceb)](https://app.codacy.com/app/warbelt/dicemaster?utm_source=github.com&utm_medium=referral&utm_content=warbelt/dicemaster&utm_campaign=Badge_Grade_Dashboard)
+
 ### Desktop app to help experimenting with custom dice
 
 <img src="https://raw.githubusercontent.com/warbelt/dicemaster/master/dicemaster.png" width="890px" />
